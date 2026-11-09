@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+log:
+  level: debug
+subscription:
+  symbols:
+    - btcusdt
+  channels:
+    - trade
+    - depth

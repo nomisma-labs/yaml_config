@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+- ycfg:
+    name: base
+    gen_file: app.yaml
+  log:
+    level: debug
+    file: capture.log
+  subscription:
+    symbols:
+      - btcusdt
+    channels:
+      - trade
+      - depth
+    snapshot: true
+- ycfg:
+    name: ci
+    extend: base
+  subscription:
+    "ycfg:override": "ycfg:import subscription.yaml"
+- ycfg:
+    name: prod
+    extend: ci
+  subscription:
+    "ycfg:override": "ycfg:import markets.yaml:/perps"

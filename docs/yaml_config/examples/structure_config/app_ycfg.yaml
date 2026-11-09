@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+- ycfg:
+    name: common
+    gen_file: app.yaml
+    import:
+      - app.yaml
+    generate: false
+  log:
+    level: debug
+- ycfg:
+    name: ci
+    extend: common
+  log:
+    level: warn
+- ycfg:
+    name: prod
+    extend: ci
+    gen_file: prod.yaml
+  subscription:
+    symbols: "ycfg:import symbol.yaml"

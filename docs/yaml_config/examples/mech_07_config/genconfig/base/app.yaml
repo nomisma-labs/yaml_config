@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+connection:
+  address: wss://dev.example/ws
+  timeout_s: 5
+log:
+  file:
+    name: dev.log
+    rotationSize: 1500000
+  level: debug
+subscription:
+  channels:
+    - trade
+    - depth
+  symbols:
+    - btcusdt
+    - solusdt

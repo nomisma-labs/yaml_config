@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+log:
+  level: debug
+connection:
+  snapshot:
+    address: wss://snapshot.dev.example/ws
+  address: wss://dev.example/ws
+  timeout_s: 5
+subscription:
+  symbols:
+    - btcusdt
+  channels:
+    - trade
+    - depth
+md_log:
+  file: binance-spot-%Y%m%d-%H.md

@@ -1,0 +1,34 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+- ycfg:
+    name: base
+    gen_file: md_capture.yaml
+    import:
+      - md_capture.yaml
+- ycfg:
+    name: ci
+    extend: base
+    import:
+      - connection.yaml
+      - deployment.yaml
+- ycfg:
+    name: prod
+    extend: ci
+  subscription:
+    symbols: "ycfg:import symbols.yaml:/spot"
+- ycfg:
+    name: prod-liquidation
+    extend: prod
+    gen_file: md_capture_liquidation.yaml
+  log:
+    file: "ycfg:delete"
+  connection:
+    "ycfg:override": "ycfg:import md_capture.yaml:/connection"
+  subscription:
+    "ycfg:override":
+      symbols: "ycfg:import symbols.yaml:/liquidation"
+      channels:
+        - liquidation
+  md_log:
+    file: md/%Y%m%d/binance-liquidation-%Y%m%d-%H.md

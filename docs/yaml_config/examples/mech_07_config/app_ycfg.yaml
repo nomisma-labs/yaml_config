@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+- ycfg:
+    name: base
+    gen_file: app.yaml
+  log:
+    level: debug
+    file:
+      name: dev.log
+      rotationSize: 1500000
+  connection:
+    address: wss://dev.example/ws
+    timeout_s: 5
+  subscription:
+    symbols:
+      - btcusdt
+      - solusdt
+    channels:
+      - trade
+      - depth
+- ycfg:
+    name: ci
+    extend: base
+    import:
+      - connection.yaml
+      - deployment.yaml
+  log:
+    level: error
+  connection:
+    timeout_s: 30

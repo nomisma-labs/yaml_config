@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+endpoint: https://example.test/feed
+timeout_s: 10
+enabled: true

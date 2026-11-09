@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+connection:
+  snapshot:
+    address: wss://snapshot.current.example/ws
+  address: wss://current.example/ws
+  timeout_s: 20

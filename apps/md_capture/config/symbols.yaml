@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+spot:
+  - btcusdt
+  - ethusdt
+liquidation:
+  - btcusdt

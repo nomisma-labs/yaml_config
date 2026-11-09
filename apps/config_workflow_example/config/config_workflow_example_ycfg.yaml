@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+- ycfg:
+    name: dev
+    import: config_workflow_example.yaml
+- ycfg:
+    name: prod
+    extend: dev
+  endpoint: https://example.test/production-feed
+  timeout_s: 30

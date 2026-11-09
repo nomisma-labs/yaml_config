@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+- ycfg:
+    name: base
+    gen_file: consumer.yaml
+    generate: false
+  connection:
+    address: wss://example.test/generated
+    timeout_s: 10
+  enabled: true
+  annotation: inherited
+- ycfg:
+    name: prod
+    extend: base
+  connection:
+    timeout_s: 30
+  enabled: false
+- ycfg:
+    name: invalid
+    extend: prod
+  connection:
+    timeout_s: 0

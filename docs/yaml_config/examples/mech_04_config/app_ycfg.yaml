@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+- ycfg:
+    name: dev
+  log:
+    level: debug
+- ycfg:
+    name: ci
+    extend: dev
+  log:
+    level: warn
+- ycfg:
+    name: prod
+    extend: ci
+    gen_file: capture.yaml

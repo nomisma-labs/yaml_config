@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+log:
+  level: warn
+  file:
+    name: ci.log
+connection:
+  timeout_s: 20

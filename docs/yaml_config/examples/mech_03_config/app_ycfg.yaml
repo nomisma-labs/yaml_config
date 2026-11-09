@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: 2026 Alexey Tkachenko
+# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+
+- ycfg:
+    name: base
+    gen_file: app.yaml
+  log:
+    level: "ycfg:import values.yaml:/log_level"
+  connection:
+    timeout_s: "ycfg:import values.yaml:/timeout_s"
+  subscription:
+    symbols: "ycfg:import markets.yaml:/spot/symbols"
+    channels: "ycfg:import markets.yaml:/spot/channels"
