@@ -6,3 +6,5 @@
 add_subdirectory(ycfg)
 
 add_subdirectory(values)
+
+add_subdirectory(mapping)

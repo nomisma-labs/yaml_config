@@ -3,3 +3,5 @@
 
 export module nom.yaml_config;
 export import :values;
+export import nom.config_types;
+export import :mapping;

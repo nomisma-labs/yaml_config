@@ -20,6 +20,10 @@ nom_project_options()
 include(cmake/yaml_config/fkyaml_dependency.cmake)
 yaml_config_find_fkyaml()
 
+nom_require_submodule(external/base)
+FetchContent_Declare(base SOURCE_DIR ${PROJECT_SOURCE_DIR}/external/base)
+FetchContent_MakeAvailable(base)
+
 # Boost comes from system packages (docs/kit/build.md#dependencies).
 nom_find_boost()
 

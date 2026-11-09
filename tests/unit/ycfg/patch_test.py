@@ -38,6 +38,10 @@ class patch_test(unittest.TestCase):
                 prepare(source, Path(directory) / "output", patch)
             self.assertFalse((Path(directory) / "output").exists())
 
+    def test_zero_context_insertion_uses_the_previous_line_position(self):
+        self.assertEqual(apply_patch("first\nsecond\n", "@@ -1,0 +2 @@\n+insert\n"),
+                         "first\ninsert\nsecond\n")
+
     def test_bad_context_and_missing_patch_are_rejected(self):
         with self.assertRaisesRegex(ValueError, "context mismatch"):
             apply_patch("original\n", "@@ -1 +1 @@\n-wrong\n+new\n")

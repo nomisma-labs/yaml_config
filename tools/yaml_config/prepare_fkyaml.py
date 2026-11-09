@@ -24,10 +24,10 @@ def apply_patch(original: str, patch: str) -> str:
         if line.startswith(("--- ", "+++ ")):
             continue
         if line.startswith("@@"):
-            match = re.match(r"@@ -(\d+)(?:,\d+)? \+\d+(?:,\d+)? @@", line)
+            match = re.match(r"@@ -(\d+)(?:,(\d+))? \+\d+(?:,\d+)? @@", line)
             if not match:
                 raise ValueError("invalid patch hunk")
-            start = int(match[1]) - 1
+            start = int(match[1]) - (0 if match[2] == "0" else 1)
             if start < position:
                 raise ValueError("overlapping patch hunks")
             result.extend(source[position:start])

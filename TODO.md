@@ -103,3 +103,7 @@ exposed signed overflow in integer parsing.
   installation checks are implemented; all 27 workflow tests pass.
 - Fresh `./bootstrap.sh complete` passes all 3 current CTest entries (118 Python
   tests in total) and repository checks. Dependency-update reporting skips fkYAML. C++ runtime/mapping remain pending.
+
+- C++ mapping is implemented with native ADL, checked scalar/container helpers,
+  enum aliases, omission/default policies, move-only values and nested pointers.
+  GCC mapping and codec suites pass; runtime and installed consumers are next.

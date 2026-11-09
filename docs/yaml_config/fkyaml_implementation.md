@@ -1,8 +1,7 @@
 # Implementation details using fkYAML
 
-> **Design for review — implementation pending.** This document specifies the
-> adapters to implement after review. The standalone native-library probe is
-> complete; the framework mapping macros and runtime are not.
+> Mapping and the shared value codec are implemented. Runtime and package acceptance
+> checks are in progress.
 
 This document maps the [Nomisma contract](yaml_cpp_mapping.md) onto **fkYAML 0.5.0**.
 The [parser research](parser_research.md) records the recommendation, pinned
@@ -63,7 +62,7 @@ The native conversion example does not register the structure as a config member
 or add per-member policies. Use `NOM_YCONFIG` for ordinary application structures.
 It generates these two converters, registers the type, checks enabled member types,
 and applies the presence and strict-value policies below. Use a repository-owned
-macro helper; there is no dependency on nlohmann/json or toml11 macro internals.
+macro helper supporting up to 64 members per structure; there is no dependency on nlohmann/json or toml11 macro internals.
 
 | fkYAML facility | Behavior relevant to mapping |
 |---|---|
