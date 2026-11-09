@@ -1,7 +1,6 @@
 # YAML framework plan
 
-Documentation review draft prepared on **2026-11-09**. Implementation has not
-started. The new repository, template scaffold and isolated parser research are
+Documentation approved on **2026-11-09**. Implementation is in progress. The new repository, template scaffold and isolated parser research are
 complete; there is no released `yaml_config` library or working generator yet.
 
 ## Completed preparation
@@ -25,7 +24,7 @@ Review [the guide index](docs/yaml_config/README.md), especially
 [parser selection](docs/yaml_config/parser_research.md) and the
 [shared YAML profile](docs/yaml_config/ycfg.md#yaml-values-and-portability).
 
-Decisions proposed for review:
+Approved design decisions:
 
 1. fkYAML 0.5.0 with native ADL conversion, `get_value_inplace()` and full uint64
    support; PyYAML 6.0.3 with explicit compatible scalar resolution in Python.
@@ -48,11 +47,11 @@ Decisions proposed for review:
    Generator `--list` and private build records remain JSON metadata, independent
    of YAML config values.
 
-**Stop here for review.** Revise the documentation before implementing dependent
-behavior. Commit each significant implementation stage, and flag issues that need
-an architectural decision rather than silently weakening the contract.
+The user approved implementation after documentation review. Commit each significant
+stage and stop for a final implementation review. A parser compatibility decision
+is pending after UBSan exposed signed overflow in fkYAML integer parsing.
 
-## Implementation sequence after approval
+## Implementation sequence
 
 1. **Codec and Python generator.** Add pinned dependencies, `yaml_codec.py`,
    `ycfg.py` and `ycfggen.py`. First establish a shared Python/C++ value corpus;
@@ -91,3 +90,11 @@ an architectural decision rather than silently weakening the contract.
 - SPDX, formatting, Python syntax/imports, Bash syntax, copied-helper identity and
   `git diff --check` pass. The research probe passes with GCC 16 and Clang 22.
 - GitHub Actions is disabled for the new repository; no remote CI result is claimed.
+
+## Implementation progress
+
+- Python codec, section resolver and generator implemented; 48 engine/value tests
+  and 43 CLI/publication tests pass, including all documented expected outputs.
+- Shared profile corpus added; C++ parity and sanitizer checks await the parser
+  compatibility decision. The Python milestone does not claim cross-parser parity.
+- Build integration and C++ runtime/mapping remain in progress.

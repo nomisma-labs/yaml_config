@@ -1,14 +1,14 @@
 # Config generation
 
-> **Design for review — implementation pending.** APIs, commands and tests below
-> specify the intended behavior. See [the implementation plan](../../TODO.md) for status.
+> **Implementation in progress.** The Python codec and generator are available;
+> C++ parity and the remaining framework stages are tracked in [TODO.md](../../TODO.md).
 
 `ycfggen.py` produces application YAML from ycfg sources. It can run directly or
 through the [build system](build_system_integration.md), using Python 3.11+ and
 PyYAML 6.0.3. The repository-owned `yaml_codec.py` resolves values using the
 [shared profile](ycfg.md#yaml-values-and-portability), rather than PyYAML's default
 YAML 1.1 implicit typing. It emits deterministic YAML with type-preserving quotes.
-Implementation will provide `tools/yaml_config/requirements.txt`; install it in
+Install `tools/yaml_config/requirements.txt` in
 the Python environment used by the generator and CMake. The parser choice and
 Python/C++ consistency requirements are in [parser research](parser_research.md).
 The [ycfg definition](ycfg.md) owns the language rules.

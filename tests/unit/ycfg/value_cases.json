@@ -1,0 +1,373 @@
+[
+  {
+    "name": "scalar true",
+    "yaml": "true",
+    "value": true
+  },
+  {
+    "name": "scalar False",
+    "yaml": "False",
+    "value": false
+  },
+  {
+    "name": "scalar TRUE",
+    "yaml": "TRUE",
+    "value": true
+  },
+  {
+    "name": "scalar on",
+    "yaml": "on",
+    "value": "on"
+  },
+  {
+    "name": "scalar yes",
+    "yaml": "yes",
+    "value": "yes"
+  },
+  {
+    "name": "scalar 2026-11-09",
+    "yaml": "2026-11-09",
+    "value": "2026-11-09"
+  },
+  {
+    "name": "scalar 012",
+    "yaml": "012",
+    "value": "012"
+  },
+  {
+    "name": "scalar 01.2",
+    "yaml": "01.2",
+    "value": "01.2"
+  },
+  {
+    "name": "scalar 1_000",
+    "yaml": "1_000",
+    "value": "1_000"
+  },
+  {
+    "name": "scalar 0XFF",
+    "yaml": "0XFF",
+    "value": "0XFF"
+  },
+  {
+    "name": "scalar -0xFF",
+    "yaml": "-0xFF",
+    "value": "-0xFF"
+  },
+  {
+    "name": "scalar 0o12",
+    "yaml": "0o12",
+    "value": 10
+  },
+  {
+    "name": "scalar 0xFF",
+    "yaml": "0xFF",
+    "value": 255
+  },
+  {
+    "name": "scalar +012",
+    "yaml": "+012",
+    "value": 12
+  },
+  {
+    "name": "scalar -012",
+    "yaml": "-012",
+    "value": -12
+  },
+  {
+    "name": "scalar 9223372036854775807",
+    "yaml": "9223372036854775807",
+    "value": 9223372036854775807
+  },
+  {
+    "name": "scalar -9223372036854775808",
+    "yaml": "-9223372036854775808",
+    "value": -9223372036854775808
+  },
+  {
+    "name": "scalar 18446744073709551615",
+    "yaml": "18446744073709551615",
+    "value": 18446744073709551615
+  },
+  {
+    "name": "scalar 18446744073709551616",
+    "yaml": "18446744073709551616",
+    "value": "18446744073709551616"
+  },
+  {
+    "name": "scalar -9223372036854775809",
+    "yaml": "-9223372036854775809",
+    "value": "-9223372036854775809"
+  },
+  {
+    "name": "scalar 1e999",
+    "yaml": "1e999",
+    "value": "1e999"
+  },
+  {
+    "name": "scalar 1e-999",
+    "yaml": "1e-999",
+    "value": "1e-999"
+  },
+  {
+    "name": "scalar 0e999",
+    "yaml": "0e999",
+    "value": 0.0
+  },
+  {
+    "name": "scalar 1e3",
+    "yaml": "1e3",
+    "value": 1000.0
+  },
+  {
+    "name": "scalar .5",
+    "yaml": ".5",
+    "value": 0.5
+  },
+  {
+    "name": "scalar +.5",
+    "yaml": "+.5",
+    "value": 0.5
+  },
+  {
+    "name": "scalar -0.0",
+    "yaml": "-0.0",
+    "value": -0.0
+  },
+  {
+    "name": "scalar 1.2345678901234567",
+    "yaml": "1.2345678901234567",
+    "value": 1.2345678901234567
+  },
+  {
+    "name": "scalar 5e-324",
+    "yaml": "5e-324",
+    "value": 5e-324
+  },
+  {
+    "name": "scalar 1.7976931348623157e308",
+    "yaml": "1.7976931348623157e308",
+    "value": 1.7976931348623157e+308
+  },
+  {
+    "name": "scalar \"12\"",
+    "yaml": "\"12\"",
+    "value": "12"
+  },
+  {
+    "name": "scalar 'true'",
+    "yaml": "'true'",
+    "value": "true"
+  },
+  {
+    "name": "scalar \"null\"",
+    "yaml": "\"null\"",
+    "value": "null"
+  },
+  {
+    "name": "scalar \"\"",
+    "yaml": "\"\"",
+    "value": ""
+  },
+  {
+    "name": "scalar []",
+    "yaml": "[]",
+    "value": []
+  },
+  {
+    "name": "scalar {}",
+    "yaml": "{}",
+    "value": {}
+  },
+  {
+    "name": "single document",
+    "yaml": "---\na: 1\n...\n",
+    "value": {
+      "a": 1
+    }
+  },
+  {
+    "name": "version",
+    "yaml": "%YAML 1.2\n---\na: 1\n",
+    "value": {
+      "a": 1
+    }
+  },
+  {
+    "name": "utf8 bom",
+    "yaml": "﻿a: 1",
+    "value": {
+      "a": 1
+    }
+  },
+  {
+    "name": "quoted keys",
+    "yaml": "\"true\": yes\n\"12\": \"12\"\n",
+    "value": {
+      "true": "yes",
+      "12": "12"
+    }
+  },
+  {
+    "name": "decoded keys",
+    "yaml": "\"a\\u002Fb\": [\"\\u03BB\", \"\\U0001F600\"]",
+    "value": {
+      "a/b": [
+        "λ",
+        "😀"
+      ]
+    }
+  },
+  {
+    "name": "block strings",
+    "yaml": "literal: |\n  12\nfolded: >-\n  one\n  two\n",
+    "value": {
+      "literal": "12\n",
+      "folded": "one two"
+    }
+  },
+  {
+    "name": "flow mappings",
+    "yaml": "{a: [1, true, \"1\"], b: {c: 2.0}}",
+    "value": {
+      "a": [
+        1,
+        true,
+        "1"
+      ],
+      "b": {
+        "c": 2.0
+      }
+    }
+  },
+  {
+    "name": "empty",
+    "yaml": "",
+    "error": true
+  },
+  {
+    "name": "comment only",
+    "yaml": "# hello\n",
+    "error": true
+  },
+  {
+    "name": "empty doc",
+    "yaml": "---\n",
+    "error": true
+  },
+  {
+    "name": "multiple docs",
+    "yaml": "a: 1\n---\na: 2\n",
+    "error": true
+  },
+  {
+    "name": "version 1.1",
+    "yaml": "%YAML 1.1\n---\na: 1\n",
+    "error": true
+  },
+  {
+    "name": "version 1.3",
+    "yaml": "%YAML 1.3\n---\na: 1\n",
+    "error": true
+  },
+  {
+    "name": "duplicate",
+    "yaml": "a: 1\na: 2\n",
+    "error": true
+  },
+  {
+    "name": "decoded duplicate",
+    "yaml": "a: 1\n\"\\u0061\": 2\n",
+    "error": true
+  },
+  {
+    "name": "nested duplicate",
+    "yaml": "outer: {a: 1, a: 2}",
+    "error": true
+  },
+  {
+    "name": "null",
+    "yaml": "null",
+    "error": true
+  },
+  {
+    "name": "implicit null",
+    "yaml": "key:",
+    "error": true
+  },
+  {
+    "name": "sequence null",
+    "yaml": "-\n",
+    "error": true
+  },
+  {
+    "name": "tilde",
+    "yaml": "a: ~",
+    "error": true
+  },
+  {
+    "name": "infinity",
+    "yaml": ".inf",
+    "error": true
+  },
+  {
+    "name": "nan",
+    "yaml": ".NaN",
+    "error": true
+  },
+  {
+    "name": "anchor",
+    "yaml": "a: &x 1\n",
+    "error": true
+  },
+  {
+    "name": "alias",
+    "yaml": "a: &x [1]\nb: *x",
+    "error": true
+  },
+  {
+    "name": "cycle",
+    "yaml": "a: &x [*x]",
+    "error": true
+  },
+  {
+    "name": "tag",
+    "yaml": "a: !!str 12",
+    "error": true
+  },
+  {
+    "name": "custom tag",
+    "yaml": "a: !thing 12",
+    "error": true
+  },
+  {
+    "name": "merge key",
+    "yaml": "\"<<\": {}",
+    "error": true
+  },
+  {
+    "name": "numeric key",
+    "yaml": "12: 1",
+    "error": true
+  },
+  {
+    "name": "boolean key",
+    "yaml": "true: 1",
+    "error": true
+  },
+  {
+    "name": "complex key",
+    "yaml": "? [a,b]\n: 1",
+    "error": true
+  },
+  {
+    "name": "invalid flow",
+    "yaml": "[a, {",
+    "error": true
+  },
+  {
+    "name": "surrogate",
+    "yaml": "\"\\uD800\"",
+    "error": true
+  }
+]
