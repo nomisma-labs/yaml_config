@@ -1,7 +1,7 @@
 # Build system integration
 
-> **Design for review — implementation pending.** APIs, commands and tests below
-> specify the intended behavior. See [the implementation plan](../../TODO.md) for status.
+> **Build integration implemented.** The CMake helpers and build utility are available.
+> The documented C++ applications remain pending; see [TODO.md](../../TODO.md).
 
 The shared CMake kit handles config collection. `yaml_config` defines generation,
 config targets, test registration, and installation of generated configs.
@@ -52,8 +52,8 @@ directory. Imports reference it as `{ycfg:gen-var NOM_CONFIG_LIB}`; see
 
 ## Registering generation
 
-The generator needs Python 3.11+ and the planned pinned PyYAML requirements.
-Use an explicit `Python3_EXECUTABLE` when configuring CMake to select a virtual
+The generator needs Python 3.11+ and the pinned PyYAML requirements.
+Use an explicit `Python_EXECUTABLE` when configuring CMake to select a virtual
 environment. Configuration must report a missing dependency before planning
 outputs; see [generator setup](config_generation.md).
 

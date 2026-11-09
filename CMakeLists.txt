@@ -29,6 +29,7 @@ endif()
 add_subdirectory(src)
 
 if(nom_build_apps)
+    include(cmake/yaml_config/config.cmake)
     add_subdirectory(apps)
 endif()
 

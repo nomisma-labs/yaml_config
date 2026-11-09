@@ -48,8 +48,8 @@ Approved design decisions:
    of YAML config values.
 
 The user approved implementation after documentation review. Commit each significant
-stage and stop for a final implementation review. A parser compatibility decision
-is pending after UBSan exposed signed overflow in fkYAML integer parsing.
+stage and stop for a final implementation review. The user approved a version-pinned fkYAML compatibility patch after UBSan
+exposed signed overflow in integer parsing.
 
 ## Implementation sequence
 
@@ -95,6 +95,10 @@ is pending after UBSan exposed signed overflow in fkYAML integer parsing.
 
 - Python codec, section resolver and generator implemented; 48 engine/value tests
   and 43 CLI/publication tests pass, including all documented expected outputs.
-- Shared profile corpus added; C++ parity and sanitizer checks await the parser
-  compatibility decision. The Python milestone does not claim cross-parser parity.
-- Build integration and C++ runtime/mapping remain in progress.
+- Shared profile corpus added; C++ parity and sanitizer checks are next with the approved parser
+  compatibility patch. The Python milestone does not claim cross-parser parity.
+- Build helpers, output ownership/success records, config targets, cleanup and
+  installation checks are implemented; all 27 workflow tests pass.
+- Fresh `./bootstrap.sh complete` passes all 3 current CTest entries (118 Python
+  tests in total) and repository checks. Dependency-update reporting skips fkYAML
+  because upstream releases use a `release/*` branch. C++ runtime/mapping remain pending.

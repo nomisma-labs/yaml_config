@@ -10,7 +10,7 @@ Shared build and maintenance tools live in [tools/kit](../kit/README.md).
 | [config_path.sh](config_path.sh) | Sourceable Bash commands for selecting config search directories. | [Bash setup and commands](../../docs/yaml_config/app_config_binding.md#selecting-search-directories-in-bash) |
 | [ycfggen.py](ycfggen.py) | Command-line YAML config generator and metadata listing. | [Config generation](../../docs/yaml_config/config_generation.md) |
 | [ycfg.py](ycfg.py) | Python engine that resolves ycfg sections into application YAML in memory. | [Python API](../../docs/yaml_config/config_generation.md#python-api) |
-| `ycfg_build.py` (planned) | Utility called by CMake to manage generation plans, output ownership, and successful build records. | [Build integration](../../docs/yaml_config/build_system_integration.md) |
+| [ycfg_build.py](ycfg_build.py) | Utility called by CMake to manage generation plans, output ownership, and successful build records. | [Build integration](../../docs/yaml_config/build_system_integration.md) |
 
 `yaml_codec.py` supplies the shared Python YAML value profile and deterministic writer.
 
