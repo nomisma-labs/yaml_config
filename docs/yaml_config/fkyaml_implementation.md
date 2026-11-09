@@ -6,7 +6,7 @@
 
 This document maps the [Nomisma contract](yaml_cpp_mapping.md) onto **fkYAML 0.5.0**.
 The [parser research](parser_research.md) records the recommendation, pinned
-revision, observed limitations and module probe. The dependency will be a release
+revision, observed limitations and module probe. The dependency is a pinned release
 submodule under `external/fkyaml`; `<yaml_config/fkyaml.h>` includes its native
 header and is also included by `config.h`. Textual third-party and macro headers
 come before imports, in the global module fragment for module units.
@@ -109,9 +109,10 @@ explicit domain converter if needed. There is no implicit timezone conversion.
 
 Include `<yaml_config/config.h>`, import `nom.yaml_config`, and link
 `nom::yaml_config`. Its public dependency on `nom::config_types` supplies the
-common module. The installed package must find `base` and fkYAML; source and
-installed consumers use the same target. Native fkYAML headers must be available
-to consumers because converter declarations mention `fkyaml::node`.
+common module. The installed package finds `base` and Boost and bundles its patched fkYAML
+headers through `nom::yaml_config_fkyaml`; source and installed consumers use the
+same target. Do not mix another fkYAML header provider into this build. Converter
+declarations mention `fkyaml::node`, so all consumers need the same header definitions.
 
 | Operation | Purpose |
 |---|---|
@@ -232,3 +233,19 @@ For example, unquoted `012` and out-of-range numeric-looking text become strings
 with the pinned parser; checked numeric mapping rejects those strings. The Python
 codec must agree. Schema/type checking belongs here; application-specific ranges
 and relationships belong to the root `validate()` protocol.
+
+## Pinned compatibility patch
+
+The upstream v0.5.0 checkout remains unchanged. Configuration creates a private
+header tree with [fkyaml_numeric.patch](../../cmake/yaml_config/patches/fkyaml_numeric.patch),
+guarded by SHA-256 checks of both original headers. Dependency updates require
+reviewing and retesting the patch; an unexpected header fails configuration.
+Installed consumers receive this same patched tree and the upstream license.
+
+The patch accumulates negative decimals without an overflowing positive magnitude,
+checks hexadecimal/octal accumulation before multiplication, and emits floating
+values with `max_digits10` precision and the classic locale. These changes fix
+`INT64_MIN` undefined behavior, unsigned boundary wraparound, and precision loss
+in native serialization. Shared Python/C++ corpus tests and sanitizer regressions
+cover the numeric boundaries. The framework additionally enforces its explicit
+YAML 1.2 directive policy before parsing; fkYAML itself accepts future 1.x versions.

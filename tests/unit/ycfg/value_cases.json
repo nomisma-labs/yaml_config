@@ -369,5 +369,35 @@
     "name": "surrogate",
     "yaml": "\"\\uD800\"",
     "error": true
+  },
+  {
+    "name": "integer boundary 0x8000000000000000",
+    "yaml": "0x8000000000000000",
+    "value": 9223372036854775808
+  },
+  {
+    "name": "integer boundary 0xFFFFFFFFFFFFFFFF",
+    "yaml": "0xFFFFFFFFFFFFFFFF",
+    "value": 18446744073709551615
+  },
+  {
+    "name": "integer boundary 0o1000000000000000000000",
+    "yaml": "0o1000000000000000000000",
+    "value": 9223372036854775808
+  },
+  {
+    "name": "integer boundary 0o1777777777777777777777",
+    "yaml": "0o1777777777777777777777",
+    "value": 18446744073709551615
+  },
+  {
+    "name": "integer boundary 0x10000000000000000",
+    "yaml": "0x10000000000000000",
+    "value": "0x10000000000000000"
+  },
+  {
+    "name": "integer boundary 0o2000000000000000000000",
+    "yaml": "0o2000000000000000000000",
+    "value": "0o2000000000000000000000"
   }
 ]

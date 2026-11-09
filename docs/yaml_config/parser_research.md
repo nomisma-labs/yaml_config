@@ -117,3 +117,13 @@ Before implementation acceptance, require:
 - Generator/build workflow and CLI parity with the reference frameworks.
 - GCC/Clang builds and source/installed consumers; module export and dependency
   packaging must be checked with the final adapters, not inferred from the probe.
+
+## Implementation findings
+
+Framework parity and UBSan tests exposed three issues in the pinned release:
+negative decimal accumulation overflows at `INT64_MIN`, large hexadecimal/octal
+integers can wrap during signed accumulation, and native float emission uses only
+six significant digits. The approved [compatibility overlay](fkyaml_implementation.md#pinned-compatibility-patch)
+fixes these cases without modifying the upstream submodule. The recommendation
+therefore applies to the pinned, patched header provider, not an arbitrary system
+installation of fkYAML 0.5.0.

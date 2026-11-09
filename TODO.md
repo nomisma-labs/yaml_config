@@ -1,7 +1,7 @@
 # YAML framework plan
 
 Documentation approved on **2026-11-09**. Implementation is in progress. The new repository, template scaffold and isolated parser research are
-complete; there is no released `yaml_config` library or working generator yet.
+complete; there is no released `yaml_config` library yet.
 
 ## Completed preparation
 
@@ -95,10 +95,11 @@ exposed signed overflow in integer parsing.
 
 - Python codec, section resolver and generator implemented; 48 engine/value tests
   and 43 CLI/publication tests pass, including all documented expected outputs.
-- Shared profile corpus added; C++ parity and sanitizer checks are next with the approved parser
-  compatibility patch. The Python milestone does not claim cross-parser parity.
+- C++ codec and the approved hash-guarded fkYAML compatibility overlay are implemented.
+  The shared corpus and all 50 documentation fixtures agree across Python/C++;
+  signed/unsigned numeric boundary probes pass UBSan. Float precision/locale and
+  overlay drift/stability regressions pass. The engine now has 51 Python tests.
 - Build helpers, output ownership/success records, config targets, cleanup and
   installation checks are implemented; all 27 workflow tests pass.
 - Fresh `./bootstrap.sh complete` passes all 3 current CTest entries (118 Python
-  tests in total) and repository checks. Dependency-update reporting skips fkYAML
-  because upstream releases use a `release/*` branch. C++ runtime/mapping remain pending.
+  tests in total) and repository checks. Dependency-update reporting skips fkYAML. C++ runtime/mapping remain pending.

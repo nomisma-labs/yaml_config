@@ -1,0 +1,7 @@
+[submodule "external/fkyaml"]
+	path = external/fkyaml
+	url = https://github.com/fktn-k/fkYAML.git
+	shallow = true
+[submodule "external/base"]
+	path = external/base
+	url = ../base.git
