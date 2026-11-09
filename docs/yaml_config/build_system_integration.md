@@ -1,8 +1,5 @@
 # Build system integration
 
-> **Build integration implemented.** The CMake helpers and build utility are available.
-> The documented C++ applications are implemented; acceptance checks are tracked in [TODO.md](../../TODO.md).
-
 The shared CMake kit handles config collection. `yaml_config` defines generation,
 config targets, test registration, and installation of generated configs.
 

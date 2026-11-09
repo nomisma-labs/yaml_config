@@ -1,8 +1,5 @@
 # Config generation
 
-> **Implementation in progress.** The Python codec and generator are available;
-> C++ parity and the remaining framework stages are tracked in [TODO.md](../../TODO.md).
-
 `ycfggen.py` produces application YAML from ycfg sources. It can run directly or
 through the [build system](build_system_integration.md), using Python 3.11+ and
 PyYAML 6.0.3. The repository-owned `yaml_codec.py` resolves values using the

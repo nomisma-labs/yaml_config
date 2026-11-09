@@ -111,7 +111,7 @@ class config_args_example_tests(unittest.TestCase):
 
     def test_check_modes_with_short_options_and_application_arguments(self):
         for arguments, expected in (
-                (("-k", "view", "-v", "Alex"), 'greeting = "Hello"'),
+                (("-k", "view", "-v", "Alex"), 'greeting: "Hello"'),
                 (("-ksilent", "Alex"), "OK\n"),
                 (("--check-config=silent", "--", "view"), "OK\n")):
             with self.subTest(arguments=arguments):

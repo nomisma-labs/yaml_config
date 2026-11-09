@@ -33,7 +33,7 @@ function(yaml_config_find_fkyaml)
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
     if(nom_install)
         install(DIRECTORY "${headers}/" DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-        install(FILES "${source}/LICENSE" "${patch}"
+        install(FILES "${source}/LICENSE.txt" "${patch}"
             DESTINATION ${CMAKE_INSTALL_DATADIR}/licenses/fkyaml)
     endif()
 endfunction()

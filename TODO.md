@@ -1,115 +1,78 @@
-# YAML framework plan
+# YAML framework status
 
-Documentation approved on **2026-11-09**. Implementation is in progress. The new repository, template scaffold and isolated parser research are
-complete; there is no released `yaml_config` library yet.
+Documentation and implementation are complete for the first version, pending the
+user's implementation review. No release has been published. Documentation was
+approved on **2026-11-09**; implementation followed in committed stages.
 
-## Completed preparation
+## Remaining work
 
-- Created private `nomisma-labs/yaml_config` from `cmake_template` v0.13.0 and
-  initialized it with the template tool. `.template_ref` records
-  `ccd09413e6a6421dd1b6b97873c1be11bc44e06e`.
-- Registered `research/yaml_config` in the workspace manifests and editor folders.
-- Validated the empty scaffold with `./bootstrap.sh`: 19 checks passed, no failures;
-  five test runs skipped because the scaffold has no framework tests.
-- Compared fkYAML 0.5.0, yaml-cpp 0.9.0 and rapidyaml 0.16.0 using primary sources.
-  Recommended fkYAML; GCC 16 and Clang 22 native conversion/module probes passed.
-- Ported the eight reference guides, supporting app/tool/consumer READMEs and
-  50 config source/donor/expected-output fixtures. Added a separate parser research
-  note. The examples specify target behavior and have corresponding applications.
-- Copied the format-independent `config_path.sh` unchanged.
+- Review the implementation and reconcile any requested corrections with the docs.
+- Release only after a separate release request.
 
-## Documentation review
+## Completed implementation
 
-Review [the guide index](docs/yaml_config/README.md), especially
-[parser selection](docs/yaml_config/parser_research.md) and the
-[shared YAML profile](docs/yaml_config/ycfg.md#yaml-values-and-portability).
+- Template-derived repository, workspace registration and parser research.
+- Eight framework guides, parser notes, three documented applications and 50 YAML
+  source/donor/expected-output fixtures.
+- Python value codec, section resolver and generator, including inheritance,
+  imports, substitutions, deletion/replacement, metadata listing and atomic output.
+- CMake generation, collection, ownership records, cleanup and installation.
+- `nom.yaml_config`, re-exporting `base` config types, with native ADL mapping,
+  checked numbers/booleans, enums, containers, nested defaults, optional omission
+  and diagnostic pointers.
+- Runtime arguments, location, substitution, ordered typed overrides, root
+  validation and full/view/silent check modes.
+- Source and installed-package consumers, including negative compilation checks
+  for unsupported members, containers and wrapper combinations.
+- Unchanged format-independent `cfg_*` Bash helpers.
 
-Approved design decisions:
+## Approved design
 
-1. fkYAML 0.5.0 with native ADL conversion, `get_value_inplace()` and full uint64
-   support; PyYAML 6.0.3 with explicit compatible scalar resolution in Python.
-   The native parser treats some leading-zero and overflowing numeric-looking text as
-   strings. Checked numeric members reject those strings. This behavior is a
-   documented tradeoff, not an exact YAML Core-schema claim.
-2. Root sequence of section mappings, or one mapping shorthand, with `ycfg`
-   metadata. No `sections` envelope and no multi-document section syntax.
-3. One UTF-8 document; string keys; reject duplicate keys, null, nonfinite numbers,
-   anchors, aliases, explicit tags and merge keys. These restrictions keep the
-   existing tree/merge model. Retain initialized optional/defaulted members on
-   omission; omit empty optionals when serializing.
-4. Canonical `.yaml` files and `*_ycfg.yaml` discovery. Explicit paths can use
-   `.yml`; automatic lookup/discovery does not add a second suffix convention.
-5. Preserve names and conventions: `NOM_YCONFIG`, `NOM_YCONFIG_ENUM`, `nom::ycfg`,
-   `ycfg.py`, `ycfggen.py`, `ycfg_build.py`, `nom_ycfg_generate`, `nom_ycfg_test`;
-   keep `cfg_*` Bash helpers and `NOM_CONFIG*` settings unchanged. A project chooses
-   one config framework; coexistence is outside the design.
-6. Config pointers retain RFC 6901 token syntax for fragment imports and `--set`.
-   Generator `--list` and private build records remain JSON metadata, independent
-   of YAML config values.
+- fkYAML 0.5.0 with the approved version-pinned
+  [compatibility overlay](docs/yaml_config/fkyaml_implementation.md#pinned-compatibility-patch).
+  The upstream submodule remains unchanged; source and installed consumers use
+  the same patched headers. SHA-256 guards cover all five affected headers.
+- The overlay fixes integer boundary overflow, float precision/locale, truncated
+  flow collections, and string escaping/quoting. These findings and regressions
+  are documented in [parser research](docs/yaml_config/parser_research.md).
+- PyYAML 6.0.3 with explicit scalar resolution matching the pinned C++ profile.
+  Some leading-zero or overflowing numeric-looking tokens are strings; checked
+  numeric mapping rejects those strings. This is not an exact Core-schema claim.
+- One UTF-8 document; string keys; reject duplicate keys, null, nonfinite numbers,
+  anchors, aliases, explicit tags and merge keys. Missing optional/defaulted members
+  preserve C++ initializers; empty optionals serialize by omitting their keys.
+- `ycfg` sections use a root sequence or single mapping shorthand. No `sections`
+  envelope or multi-document section convention.
+- Canonical `.yaml` and `*_ycfg.yaml` discovery; explicit `.yml` paths work.
+- Familiar `NOM_YCONFIG`, `NOM_YCONFIG_ENUM`, `nom::ycfg`, generator/CMake names,
+  `cfg_*` helpers and `NOM_CONFIG*` settings. A project chooses one framework.
+- RFC 6901 token syntax for fragment imports and runtime overrides. Generator
+  listings and private build records retain JSON metadata independently of YAML.
 
-The user approved implementation after documentation review. Commit each significant
-stage and stop for a final implementation review. The user approved a version-pinned fkYAML compatibility patch after UBSan
-exposed signed overflow in integer parsing.
+## Validation — 2026-11-09
 
-## Implementation sequence
+- Fresh `./bootstrap.sh complete` with GCC 16: all **22 CTest entries pass**;
+  10 bootstrap checks pass, none fail, dependency-update reporting is skipped.
+- Fresh `./bootstrap.sh clang` with Clang 22: all **22 CTest entries pass**;
+  11 bootstrap checks pass, none fail, dependency-update reporting is skipped.
+- The suites include 149 Python tests, generated-config checks, C++ mapping/runtime
+  tests, and source/installed consumers with five compile-rejection cases each.
+- **233** shared corpus/documentation cases agree between Python and C++, including
+  both serializers, malformed inputs, numeric boundaries and escaped strings.
+- Clang AddressSanitizer, UBSan and LeakSanitizer: all **7 unit CTest entries pass**
+  with applications disabled. LeakSanitizer cannot run under the tracing sandbox;
+  the successful run used the same binaries outside that sandbox, with leak
+  detection enabled. Invalid-input parity checks require normal caught exceptions
+  and reject sanitizer diagnostics/crashes.
+- SPDX, formatting, naming, Python syntax/imports and local documentation links pass.
+  The Bash helper is byte-identical to the JSON/TOML versions; `git diff --check` passes.
+- Dependency-update discovery did not check `base` or fkYAML; the pinned versions
+  above were tested. GitHub Actions is disabled; no remote CI result is claimed.
 
-1. **Codec and Python generator.** Add pinned dependencies, `yaml_codec.py`,
-   `ycfg.py` and `ycfggen.py`. First establish a shared Python/C++ value corpus;
-   then port resolution, discovery, metadata listing, output containment and
-   atomic per-file publication. Verify every documented example against its
-   expected output. The C++ codec fixture runner may be isolated at this stage.
-2. **Build integration.** Port `ycfg_build.py`, `nom_ycfg_generate`,
-   `nom_ycfg_test`, output planning, ownership/success records, config targets,
-   cleanup and installation checks. Respect the shared kit's project options.
-3. **C++ mapping.** Add `base` and fkYAML dependencies, module/header boundaries,
-   checked scalar/container conversion, structure and enum macros, optional/default
-   policies, nested diagnostics and custom ADL converters. Cover compile-time
-   rejection of unsupported types and in-place preservation of parent defaults.
-4. **Runtime and examples.** Port arguments, location, runtime substitution,
-   ordered string-first overrides, typed loading, root validation and check modes;
-   implement all three documented applications and source/installed consumers.
-5. **Acceptance and review.** Fresh GCC/Clang validation, focused sanitizer checks
-   where useful, generator/build/CLI tests, package consumers, naming/format/header
-   checks, example regeneration and doc reconciliation. Report exact evidence and
-   remaining limitations, then stop for implementation review. Do not release
-   until separately requested.
+## Baselines
 
-## References
-
-- `json_config` baseline: `d2db3130349861f88236ac1b00cc767cbc6e3b91`.
-- `toml_config` baseline: v0.1.0, `1ca0bb0cb3aa4f21d4c61ea53e2bb3427a45dcea`.
-- Proposed `base` baseline: v0.4.0, `51dcfd4be7b59ed7147557d973e0363e2a4b23b7`.
-- Proposed fkYAML baseline: v0.5.0, `5cc0747068b94708aa0986cacd200aa74be4f9e8`.
-- JSON-specific future enhancements are not part of this port.
-
-## Documentation validation
-
-- All 50 YAML fixtures match the transformed JSON reference values and pass native
-  fkYAML parsing, serialization and reparsing.
-- Local documentation links/anchors and YAML fenced examples pass inspection.
-- SPDX, formatting, Python syntax/imports, Bash syntax, copied-helper identity and
-  `git diff --check` pass. The research probe passes with GCC 16 and Clang 22.
-- GitHub Actions is disabled for the new repository; no remote CI result is claimed.
-
-## Implementation progress
-
-- Python codec, section resolver and generator implemented; 48 engine/value tests
-  and 43 CLI/publication tests pass, including all documented expected outputs.
-- C++ codec and the approved hash-guarded fkYAML compatibility overlay are implemented.
-  The shared corpus and all 50 documentation fixtures agree across Python/C++;
-  signed/unsigned numeric boundary probes pass UBSan. Float precision/locale and
-  overlay drift/stability regressions pass. The engine now has 51 Python tests.
-- Build helpers, output ownership/success records, config targets, cleanup and
-  installation checks are implemented; all 27 workflow tests pass.
-- Fresh `./bootstrap.sh complete` passes all 3 current CTest entries (118 Python
-  tests in total) and repository checks. Dependency-update reporting skips fkYAML. C++ runtime/mapping remain pending.
-
-- C++ mapping is implemented with native ADL, checked scalar/container helpers,
-  enum aliases, omission/default policies, move-only values and nested pointers.
-  GCC mapping and codec suites pass; runtime and installed consumers are next.
-
-- Runtime lookup, argument parsing, substitution, typed overrides, loading and check
-  modes are implemented, with all three example applications. All 13 dev CTest
-  entries pass, including generated config checks. Expanded parity covers malformed
-  flow collections, escaped controls and document-marker strings. Source/package
-  consumers and CLI suites are registered; full GCC/Clang acceptance is next.
+- `cmake_template` v0.13.0: `ccd09413e6a6421dd1b6b97873c1be11bc44e06e`.
+- `json_config`: `d2db3130349861f88236ac1b00cc767cbc6e3b91`.
+- `toml_config` v0.1.0: `1ca0bb0cb3aa4f21d4c61ea53e2bb3427a45dcea`.
+- `base` v0.4.0: `51dcfd4be7b59ed7147557d973e0363e2a4b23b7`.
+- fkYAML v0.5.0: `5cc0747068b94708aa0986cacd200aa74be4f9e8`.

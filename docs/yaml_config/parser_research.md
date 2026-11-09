@@ -2,7 +2,7 @@
 
 Research date: **2026-11-09**. This is a design recommendation, not an implemented
 configuration framework. The comparison uses the published releases below and
-isolated probes, separate from the future `nom.yaml_config` API.
+isolated probes, separate from the framework `nom.yaml_config` API.
 
 ## Recommendation
 
@@ -85,9 +85,9 @@ implicit resolvers. [PyYAML's documented low-level APIs](https://pyyaml.org/wiki
 provide the required primitives. A shared fixture corpus must compare Python
 values and C++ node categories, including serialization/reparse, before declaring
 the codec complete. Pin the dependency in the generator's requirements file at
-implementation time; the standard library has no YAML parser.
+configuration time; the standard library has no YAML parser.
 
-## Proposed authoring boundaries
+## Approved authoring boundaries
 
 Use one UTF-8 YAML document with string-keyed mappings, sequences, finite numbers,
 booleans and strings. Reject nulls, duplicate keys, non-string keys, anchors,
@@ -99,7 +99,7 @@ Sections use a root sequence, like jcfg, or a single mapping shorthand. No
 `sections` envelope and no multi-document section syntax are needed. The
 [YAML specification](https://yaml.org/spec/1.2.2/) describes the broader language;
 the framework deliberately specifies a narrower, testable application profile.
-These decisions are part of the documentation review.
+These decisions were approved in the documentation review.
 
 ## Evidence and remaining gates
 
@@ -107,9 +107,10 @@ The [standalone probe](../../tools/yaml_config/research/README.md) checks real A
 converters, enum errors, preserved initializers, typed scalar boundaries and
 unsigned serialization with a named module and `import std`. It passed with
 GCC 16 and Clang 22 on 2026-11-09. This verifies the native facilities, not the
-future `NOM_YCONFIG` macros, loader, or installed-package boundary.
+framework `NOM_YCONFIG` macros, loader, or installed-package boundary.
+Those are verified separately by the implementation tests recorded in [TODO.md](../../TODO.md).
 
-Before implementation acceptance, require:
+Implementation acceptance requires:
 
 - A shared Python/C++ fixture corpus for accepted and rejected YAML, including
   scalar spelling, duplicate keys, tags/aliases, empty inputs and multiple documents.

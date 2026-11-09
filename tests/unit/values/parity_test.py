@@ -41,7 +41,9 @@ def main():
             result = subprocess.run([sys.argv[1], "C++ value codec agrees with Python corpus"],
                                     env=environment, capture_output=True, text=True, timeout=15)
             if "error" in case:
-                if result.returncode == 0 or result.returncode < 0:
+                # A sanitizer crash must never count as a successful rejection.
+                if (result.returncode <= 0 or result.stderr
+                        or "due to unexpected exception" not in result.stdout):
                     raise AssertionError((case["name"], result.returncode, result.stdout, result.stderr))
                 continue
             if result.returncode != 0:

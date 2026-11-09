@@ -20,4 +20,4 @@ build/parser-research-gcc/bin/parser_probe_runner
 Repeat with `build/parser-research-clang` and `-DCMAKE_CXX_COMPILER=clang++-22`.
 Both builds/runs passed on 2026-11-09 with fkYAML commit
 `5cc0747068b94708aa0986cacd200aa74be4f9e8`. The probe deliberately checks native
-behavior, including values that the future application profile will reject.
+behavior, including values that the application profile rejects.

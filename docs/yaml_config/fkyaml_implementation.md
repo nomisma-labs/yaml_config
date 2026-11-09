@@ -1,8 +1,5 @@
 # Implementation details using fkYAML
 
-> Mapping and the shared value codec are implemented. Runtime and package acceptance
-> checks are in progress.
-
 This document maps the [Nomisma contract](yaml_cpp_mapping.md) onto **fkYAML 0.5.0**.
 The [parser research](parser_research.md) records the recommendation, pinned
 revision, observed limitations and module probe. The dependency is a pinned release
