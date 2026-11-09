@@ -5,3 +5,9 @@
 
 add_subdirectory(ycfggen)
 add_subdirectory(config_build)
+
+add_subdirectory(config_args)
+add_subdirectory(config_workflow_example)
+add_subdirectory(md_capture)
+
+nom_library_usage_tests(library_usage)

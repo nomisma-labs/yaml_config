@@ -1,9 +1,6 @@
 # md_capture
 
-> **Design for review — implementation pending.** APIs, commands and tests below
-> specify the intended behavior. See [the implementation plan](../../TODO.md) for status.
-
-This is the planned application counterpart of the [complete example in ycfg.md](../../docs/yaml_config/ycfg.md#complete-example).
+This is the application counterpart of the [complete example in ycfg.md](../../docs/yaml_config/ycfg.md#complete-example).
 It demonstrates a nested market-data capture configuration, inheritance, donor
 imports, fragment imports, deletion, and replacement. The sample simulates startup
 by printing the resolved capture settings after mapping and validation.

@@ -128,6 +128,17 @@ export namespace nom::ycfg
     fkyaml::node parse_config(std::string_view source, std::string_view label = "YAML")
     {
         detail::validate_utf8(source);
+        for (std::size_t i = 0; i < source.size(); ++i)
+        {
+            const auto c = static_cast<unsigned char>(source[i]);
+            const auto next = i + 1 < source.size() ? static_cast<unsigned char>(source[i + 1]) : 0;
+            if ((c < 0x20 && c != '\t' && c != '\n' && c != '\r') || c == 0x7f ||
+                (c == 0xc2 && next >= 0x80 && next <= 0x9f && next != 0x85) ||
+                (c == 0xef && next == 0xbf && i + 2 < source.size() &&
+                 (static_cast<unsigned char>(source[i + 2]) == 0xbe ||
+                  static_cast<unsigned char>(source[i + 2]) == 0xbf)))
+                throw mapping_error(std::string(label) + ": non-printable character must use a YAML escape");
+        }
         std::string text(source);
         if (text.empty() || text.back() != '\n')
             text += '\n';

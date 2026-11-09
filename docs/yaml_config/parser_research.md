@@ -120,10 +120,13 @@ Before implementation acceptance, require:
 
 ## Implementation findings
 
-Framework parity and UBSan tests exposed three issues in the pinned release:
+Framework parity and UBSan tests exposed compatibility issues in the pinned release:
 negative decimal accumulation overflows at `INT64_MIN`, large hexadecimal/octal
 integers can wrap during signed accumulation, and native float emission uses only
-six significant digits. The approved [compatibility overlay](fkyaml_implementation.md#pinned-compatibility-patch)
+six significant digits. The parser also accepts unclosed flow collections; a
+final depth check rejects these truncated documents. Escaped NUL and non-printable
+Unicode need complete native escape/unescape handling to round-trip safely;
+the writer must also quote document-marker strings such as `---`. The approved [compatibility overlay](fkyaml_implementation.md#pinned-compatibility-patch)
 fixes these cases without modifying the upstream submodule. The recommendation
 therefore applies to the pinned, patched header provider, not an arbitrary system
 installation of fkYAML 0.5.0.

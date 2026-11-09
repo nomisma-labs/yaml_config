@@ -1,8 +1,5 @@
 # Library consumer tests
 
-> **Design for review — implementation pending.** APIs, commands and tests below
-> specify the intended behavior. See [the implementation plan](../../../TODO.md) for status.
-
 This standalone CMake project consumes yaml_config in two ways: `find_package`
 against an installation and `FetchContent` against the source tree. The repository
 registers both through `nom_library_usage_tests()`; package tests also require

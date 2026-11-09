@@ -1,8 +1,5 @@
 # yaml_config tools
 
-> **Implementation in progress.** The Python codec and generator are available;
-> C++ parity and the remaining framework stages are tracked in [TODO.md](../../TODO.md).
-
 Shared build and maintenance tools live in [tools/kit](../kit/README.md).
 
 | File | Purpose | Documentation |
@@ -13,9 +10,11 @@ Shared build and maintenance tools live in [tools/kit](../kit/README.md).
 | [ycfg_build.py](ycfg_build.py) | Utility called by CMake to manage generation plans, output ownership, and successful build records. | [Build integration](../../docs/yaml_config/build_system_integration.md) |
 
 `yaml_codec.py` supplies the shared Python YAML value profile and deterministic writer.
+`prepare_fkyaml.py` prepares the hash-guarded compatibility headers used by CMake;
+see the [patch notes](../../docs/yaml_config/fkyaml_implementation.md#pinned-compatibility-patch).
 
-The Bash helper is already copied unchanged from the other frameworks. The
-[research probe](research/README.md) is available now. Install the generator dependency with
+The Bash helper is shared unchanged with the other frameworks. The
+[research probe](research/README.md) records the initial parser investigation. Install the generator dependency with
 `python3 -m pip install -r tools/yaml_config/requirements.txt` in your Python
 environment before running generator commands.
 

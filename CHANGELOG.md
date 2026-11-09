@@ -10,5 +10,11 @@ and versions follow [Semantic Versioning](https://semver.org); how to release:
 
 - Initial template scaffold for the YAML application configuration framework.
 - Parser comparison and isolated fkYAML conversion/module probes.
-- Documentation review draft, config fixtures and staged implementation plan.
-  The framework library, generator and example applications are not implemented.
+- YAML language and mapping guides, complete fixtures and application examples.
+- Python codec, section resolver and `ycfggen.py`, including imports, inheritance,
+  generation variables, metadata listing and atomic publication.
+- CMake generation, collection, cleanup, ownership and deployment helpers.
+- C++ named module with checked native fkYAML mapping, enums, containers, optional
+  and defaulted members, config lookup, arguments, substitution and typed overrides.
+- Version-pinned fkYAML compatibility headers and Python/C++ value parity tests.
+- Runtime, CLI, workflow and source/installed-package consumer tests.

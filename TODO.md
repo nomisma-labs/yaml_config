@@ -15,7 +15,7 @@ complete; there is no released `yaml_config` library yet.
   Recommended fkYAML; GCC 16 and Clang 22 native conversion/module probes passed.
 - Ported the eight reference guides, supporting app/tool/consumer READMEs and
   50 config source/donor/expected-output fixtures. Added a separate parser research
-  note. The examples specify target behavior; their applications are not implemented.
+  note. The examples specify target behavior and have corresponding applications.
 - Copied the format-independent `config_path.sh` unchanged.
 
 ## Documentation review
@@ -107,3 +107,9 @@ exposed signed overflow in integer parsing.
 - C++ mapping is implemented with native ADL, checked scalar/container helpers,
   enum aliases, omission/default policies, move-only values and nested pointers.
   GCC mapping and codec suites pass; runtime and installed consumers are next.
+
+- Runtime lookup, argument parsing, substitution, typed overrides, loading and check
+  modes are implemented, with all three example applications. All 13 dev CTest
+  entries pass, including generated config checks. Expanded parity covers malformed
+  flow collections, escaped controls and document-marker strings. Source/package
+  consumers and CLI suites are registered; full GCC/Clang acceptance is next.

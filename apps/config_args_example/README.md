@@ -1,8 +1,5 @@
 # config_args_example
 
-> **Design for review — implementation pending.** APIs, commands and tests below
-> specify the intended behavior. See [the implementation plan](../../TODO.md) for status.
-
 This application demonstrates config arguments combined with application-owned
 arguments. The framework parser extracts config options and leaves the remaining
 arguments for the application's Boost.Program_options parser. Startup stays in

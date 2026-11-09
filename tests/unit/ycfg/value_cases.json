@@ -399,5 +399,545 @@
     "name": "integer boundary 0o2000000000000000000000",
     "yaml": "0o2000000000000000000000",
     "value": "0o2000000000000000000000"
+  },
+  {
+    "name": "truncated flow 0",
+    "yaml": "{",
+    "error": true
+  },
+  {
+    "name": "truncated flow 1",
+    "yaml": "[",
+    "error": true
+  },
+  {
+    "name": "truncated flow 2",
+    "yaml": "{a: 1",
+    "error": true
+  },
+  {
+    "name": "truncated flow 3",
+    "yaml": "[1",
+    "error": true
+  },
+  {
+    "name": "truncated flow 4",
+    "yaml": "a: {b: 2",
+    "error": true
+  },
+  {
+    "name": "truncated flow 5",
+    "yaml": "a: [1, 2",
+    "error": true
+  },
+  {
+    "name": "truncated flow 6",
+    "yaml": "{a: [1, 2]",
+    "error": true
+  },
+  {
+    "name": "truncated flow 7",
+    "yaml": "[1\n...\n",
+    "error": true
+  },
+  {
+    "name": "truncated flow 8",
+    "yaml": "{a: 1\n---\nb: 2",
+    "error": true
+  },
+  {
+    "name": "quoted string ''",
+    "yaml": "\"\"",
+    "value": ""
+  },
+  {
+    "name": "quoted string ' '",
+    "yaml": "\" \"",
+    "value": " "
+  },
+  {
+    "name": "quoted string '\\t'",
+    "yaml": "\"\\t\"",
+    "value": "\t"
+  },
+  {
+    "name": "quoted string '\\n'",
+    "yaml": "\"\\n\"",
+    "value": "\n"
+  },
+  {
+    "name": "quoted string '\\r\\n'",
+    "yaml": "\"\\r\\n\"",
+    "value": "\r\n"
+  },
+  {
+    "name": "quoted string 'a\\nb'",
+    "yaml": "\"a\\nb\"",
+    "value": "a\nb"
+  },
+  {
+    "name": "quoted string 'a\\x00b'",
+    "yaml": "\"a\\u0000b\"",
+    "value": "a\u0000b"
+  },
+  {
+    "name": "quoted string '日本語 😀'",
+    "yaml": "\"日本語 😀\"",
+    "value": "日本語 😀"
+  },
+  {
+    "name": "quoted string 'a: b'",
+    "yaml": "\"a: b\"",
+    "value": "a: b"
+  },
+  {
+    "name": "quoted string '# heading'",
+    "yaml": "\"# heading\"",
+    "value": "# heading"
+  },
+  {
+    "name": "quoted string '---'",
+    "yaml": "\"---\"",
+    "value": "---"
+  },
+  {
+    "name": "quoted string '...'",
+    "yaml": "\"...\"",
+    "value": "..."
+  },
+  {
+    "name": "quoted string '%YAML 1.3'",
+    "yaml": "\"%YAML 1.3\"",
+    "value": "%YAML 1.3"
+  },
+  {
+    "name": "quoted string 'yes'",
+    "yaml": "\"yes\"",
+    "value": "yes"
+  },
+  {
+    "name": "quoted string '012'",
+    "yaml": "\"012\"",
+    "value": "012"
+  },
+  {
+    "name": "quoted string '18446744073709551616'",
+    "yaml": "\"18446744073709551616\"",
+    "value": "18446744073709551616"
+  },
+  {
+    "name": "quoted string 'null'",
+    "yaml": "\"null\"",
+    "value": "null"
+  },
+  {
+    "name": "quoted string '~'",
+    "yaml": "\"~\"",
+    "value": "~"
+  },
+  {
+    "name": "quoted string 'false'",
+    "yaml": "\"false\"",
+    "value": "false"
+  },
+  {
+    "name": "quoted string '1.0'",
+    "yaml": "\"1.0\"",
+    "value": "1.0"
+  },
+  {
+    "name": "quoted string '-0.0'",
+    "yaml": "\"-0.0\"",
+    "value": "-0.0"
+  },
+  {
+    "name": "quoted string '\\\\path\\\\'",
+    "yaml": "\"\\\\path\\\\\"",
+    "value": "\\path\\"
+  },
+  {
+    "name": "quoted string 'a\"b'",
+    "yaml": "\"a\\\"b\"",
+    "value": "a\"b"
+  },
+  {
+    "name": "escaped codepoint 0x0",
+    "yaml": "\"a\\u0000b\"",
+    "value": "a\u0000b"
+  },
+  {
+    "name": "escaped codepoint 0x1",
+    "yaml": "\"a\\u0001b\"",
+    "value": "a\u0001b"
+  },
+  {
+    "name": "escaped codepoint 0x2",
+    "yaml": "\"a\\u0002b\"",
+    "value": "a\u0002b"
+  },
+  {
+    "name": "escaped codepoint 0x3",
+    "yaml": "\"a\\u0003b\"",
+    "value": "a\u0003b"
+  },
+  {
+    "name": "escaped codepoint 0x4",
+    "yaml": "\"a\\u0004b\"",
+    "value": "a\u0004b"
+  },
+  {
+    "name": "escaped codepoint 0x5",
+    "yaml": "\"a\\u0005b\"",
+    "value": "a\u0005b"
+  },
+  {
+    "name": "escaped codepoint 0x6",
+    "yaml": "\"a\\u0006b\"",
+    "value": "a\u0006b"
+  },
+  {
+    "name": "escaped codepoint 0x7",
+    "yaml": "\"a\\u0007b\"",
+    "value": "a\u0007b"
+  },
+  {
+    "name": "escaped codepoint 0x8",
+    "yaml": "\"a\\bb\"",
+    "value": "a\bb"
+  },
+  {
+    "name": "escaped codepoint 0x9",
+    "yaml": "\"a\\tb\"",
+    "value": "a\tb"
+  },
+  {
+    "name": "escaped codepoint 0xa",
+    "yaml": "\"a\\nb\"",
+    "value": "a\nb"
+  },
+  {
+    "name": "escaped codepoint 0xb",
+    "yaml": "\"a\\u000bb\"",
+    "value": "a\u000bb"
+  },
+  {
+    "name": "escaped codepoint 0xc",
+    "yaml": "\"a\\fb\"",
+    "value": "a\fb"
+  },
+  {
+    "name": "escaped codepoint 0xd",
+    "yaml": "\"a\\rb\"",
+    "value": "a\rb"
+  },
+  {
+    "name": "escaped codepoint 0xe",
+    "yaml": "\"a\\u000eb\"",
+    "value": "a\u000eb"
+  },
+  {
+    "name": "escaped codepoint 0xf",
+    "yaml": "\"a\\u000fb\"",
+    "value": "a\u000fb"
+  },
+  {
+    "name": "escaped codepoint 0x10",
+    "yaml": "\"a\\u0010b\"",
+    "value": "a\u0010b"
+  },
+  {
+    "name": "escaped codepoint 0x11",
+    "yaml": "\"a\\u0011b\"",
+    "value": "a\u0011b"
+  },
+  {
+    "name": "escaped codepoint 0x12",
+    "yaml": "\"a\\u0012b\"",
+    "value": "a\u0012b"
+  },
+  {
+    "name": "escaped codepoint 0x13",
+    "yaml": "\"a\\u0013b\"",
+    "value": "a\u0013b"
+  },
+  {
+    "name": "escaped codepoint 0x14",
+    "yaml": "\"a\\u0014b\"",
+    "value": "a\u0014b"
+  },
+  {
+    "name": "escaped codepoint 0x15",
+    "yaml": "\"a\\u0015b\"",
+    "value": "a\u0015b"
+  },
+  {
+    "name": "escaped codepoint 0x16",
+    "yaml": "\"a\\u0016b\"",
+    "value": "a\u0016b"
+  },
+  {
+    "name": "escaped codepoint 0x17",
+    "yaml": "\"a\\u0017b\"",
+    "value": "a\u0017b"
+  },
+  {
+    "name": "escaped codepoint 0x18",
+    "yaml": "\"a\\u0018b\"",
+    "value": "a\u0018b"
+  },
+  {
+    "name": "escaped codepoint 0x19",
+    "yaml": "\"a\\u0019b\"",
+    "value": "a\u0019b"
+  },
+  {
+    "name": "escaped codepoint 0x1a",
+    "yaml": "\"a\\u001ab\"",
+    "value": "a\u001ab"
+  },
+  {
+    "name": "escaped codepoint 0x1b",
+    "yaml": "\"a\\u001bb\"",
+    "value": "a\u001bb"
+  },
+  {
+    "name": "escaped codepoint 0x1c",
+    "yaml": "\"a\\u001cb\"",
+    "value": "a\u001cb"
+  },
+  {
+    "name": "escaped codepoint 0x1d",
+    "yaml": "\"a\\u001db\"",
+    "value": "a\u001db"
+  },
+  {
+    "name": "escaped codepoint 0x1e",
+    "yaml": "\"a\\u001eb\"",
+    "value": "a\u001eb"
+  },
+  {
+    "name": "escaped codepoint 0x1f",
+    "yaml": "\"a\\u001fb\"",
+    "value": "a\u001fb"
+  },
+  {
+    "name": "escaped codepoint 0x7f",
+    "yaml": "\"a\\u007fb\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x80",
+    "yaml": "\"a\\u0080b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x81",
+    "yaml": "\"a\\u0081b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x82",
+    "yaml": "\"a\\u0082b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x83",
+    "yaml": "\"a\\u0083b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x84",
+    "yaml": "\"a\\u0084b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x85",
+    "yaml": "\"a\\u0085b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x86",
+    "yaml": "\"a\\u0086b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x87",
+    "yaml": "\"a\\u0087b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x88",
+    "yaml": "\"a\\u0088b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x89",
+    "yaml": "\"a\\u0089b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x8a",
+    "yaml": "\"a\\u008ab\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x8b",
+    "yaml": "\"a\\u008bb\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x8c",
+    "yaml": "\"a\\u008cb\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x8d",
+    "yaml": "\"a\\u008db\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x8e",
+    "yaml": "\"a\\u008eb\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x8f",
+    "yaml": "\"a\\u008fb\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x90",
+    "yaml": "\"a\\u0090b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x91",
+    "yaml": "\"a\\u0091b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x92",
+    "yaml": "\"a\\u0092b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x93",
+    "yaml": "\"a\\u0093b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x94",
+    "yaml": "\"a\\u0094b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x95",
+    "yaml": "\"a\\u0095b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x96",
+    "yaml": "\"a\\u0096b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x97",
+    "yaml": "\"a\\u0097b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x98",
+    "yaml": "\"a\\u0098b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x99",
+    "yaml": "\"a\\u0099b\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x9a",
+    "yaml": "\"a\\u009ab\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x9b",
+    "yaml": "\"a\\u009bb\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x9c",
+    "yaml": "\"a\\u009cb\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x9d",
+    "yaml": "\"a\\u009db\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x9e",
+    "yaml": "\"a\\u009eb\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0x9f",
+    "yaml": "\"a\\u009fb\"",
+    "value": "ab"
+  },
+  {
+    "name": "escaped codepoint 0xfffe",
+    "yaml": "\"a\\ufffeb\"",
+    "value": "a￾b"
+  },
+  {
+    "name": "escaped codepoint 0xffff",
+    "yaml": "\"a\\uffffb\"",
+    "value": "a￿b"
+  },
+  {
+    "name": "raw invalid codepoint 0x0",
+    "yaml": "\"a\u0000b\"",
+    "error": true
+  },
+  {
+    "name": "raw invalid codepoint 0x1",
+    "yaml": "\"a\u0001b\"",
+    "error": true
+  },
+  {
+    "name": "raw invalid codepoint 0x7f",
+    "yaml": "\"ab\"",
+    "error": true
+  },
+  {
+    "name": "raw invalid codepoint 0x80",
+    "yaml": "\"ab\"",
+    "error": true
+  },
+  {
+    "name": "raw invalid codepoint 0x84",
+    "yaml": "\"ab\"",
+    "error": true
+  },
+  {
+    "name": "raw invalid codepoint 0x86",
+    "yaml": "\"ab\"",
+    "error": true
+  },
+  {
+    "name": "raw invalid codepoint 0x9f",
+    "yaml": "\"ab\"",
+    "error": true
+  },
+  {
+    "name": "raw invalid codepoint 0xfffe",
+    "yaml": "\"a￾b\"",
+    "error": true
+  },
+  {
+    "name": "raw invalid codepoint 0xffff",
+    "yaml": "\"a￿b\"",
+    "error": true
   }
 ]

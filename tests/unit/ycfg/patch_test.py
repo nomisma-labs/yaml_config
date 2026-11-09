@@ -11,7 +11,7 @@ import unittest
 from tools.yaml_config.prepare_fkyaml import apply_patch, prepare
 
 repository = Path(__file__).resolve().parents[3]
-patch = repository / "cmake/yaml_config/patches/fkyaml_numeric.patch"
+patch = repository / "cmake/yaml_config/patches/fkyaml_compatibility.patch"
 
 
 class patch_test(unittest.TestCase):
@@ -22,7 +22,7 @@ class patch_test(unittest.TestCase):
             output = Path(directory)
             prepare(source, output, patch)
             header = output / "fkYAML/detail/conversions/scalar_conv.hpp"
-            self.assertIn(b"FK_YAML_NOMISMA_NUMERIC_PATCH", header.read_bytes())
+            self.assertIn(b"FK_YAML_NOMISMA_COMPATIBILITY_PATCH", header.read_bytes())
             timestamp = header.stat().st_mtime_ns
             prepare(source, output, patch)
             self.assertEqual(header.stat().st_mtime_ns, timestamp)

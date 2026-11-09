@@ -236,8 +236,8 @@ and relationships belong to the root `validate()` protocol.
 ## Pinned compatibility patch
 
 The upstream v0.5.0 checkout remains unchanged. Configuration creates a private
-header tree with [fkyaml_numeric.patch](../../cmake/yaml_config/patches/fkyaml_numeric.patch),
-guarded by SHA-256 checks of both original headers. Dependency updates require
+header tree with [fkyaml_compatibility.patch](../../cmake/yaml_config/patches/fkyaml_compatibility.patch),
+guarded by SHA-256 checks of all five original headers. Dependency updates require
 reviewing and retesting the patch; an unexpected header fails configuration.
 Installed consumers receive this same patched tree and the upstream license.
 
@@ -245,6 +245,11 @@ The patch accumulates negative decimals without an overflowing positive magnitud
 checks hexadecimal/octal accumulation before multiplication, and emits floating
 values with `max_digits10` precision and the classic locale. These changes fix
 `INT64_MIN` undefined behavior, unsigned boundary wraparound, and precision loss
-in native serialization. Shared Python/C++ corpus tests and sanitizer regressions
+in native serialization. A final flow-depth check also rejects truncated mappings
+and sequences instead of accepting their partial contents. String escaping also preserves NUL,
+C1 controls and non-printable Unicode through valid YAML escapes, including native
+`\0` decoding. Raw non-printable source characters are rejected. The native writer quotes every
+string, preserving document-marker strings such as `---` as well as scalar-looking
+values. Shared Python/C++ corpus tests and sanitizer regressions
 cover the numeric boundaries. The framework additionally enforces its explicit
 YAML 1.2 directive policy before parsing; fkYAML itself accepts future 1.x versions.

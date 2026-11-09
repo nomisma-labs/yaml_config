@@ -1,8 +1,5 @@
 # Introduction to yaml_config
 
-> **Design for review — implementation pending.** APIs, commands and tests below
-> specify the intended behavior. See [the implementation plan](../../TODO.md) for status.
-
 **yaml_config** is Nomisma's YAML configuration framework for C++ applications.
 It loads settings into typed C++ structures, validates them before application
 startup, and generates configuration variants from structured configs.

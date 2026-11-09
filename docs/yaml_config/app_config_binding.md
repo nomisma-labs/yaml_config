@@ -1,8 +1,5 @@
 # App/Config binding
 
-> **Design for review — implementation pending.** APIs, commands and tests below
-> specify the intended behavior. See [the implementation plan](../../TODO.md) for status.
-
 The locator chooses a YAML file. The loader parses it, applies runtime
 substitution and overrides, then maps and validates the application config.
 C++ does not interpret ycfg inheritance, imports, delete, or override instructions.

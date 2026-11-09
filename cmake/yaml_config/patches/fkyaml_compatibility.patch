@@ -1,0 +1,104 @@
+--- a/include/fkYAML/detail/conversions/scalar_conv.hpp
++++ b/include/fkYAML/detail/conversions/scalar_conv.hpp
+@@ -536 +536,10 @@
+-    return atoi_dec_unchecked(p_begin, p_end, i);
++    // Accumulate negatively so INT_MIN never requires an unrepresentable positive magnitude.
++    i = 0;
++    do {
++        const char c = *p_begin;
++        if (c < '0' || c > '9') {
++            return false;
++        }
++        i = i * static_cast<IntType>(10) - static_cast<IntType>(c - '0');
++    } while (++p_begin != p_end);
++    return true;
+@@ -572 +581,5 @@
+-        i = i * static_cast<IntType>(8) + static_cast<IntType>(c - '0');
++        const auto digit = static_cast<IntType>(c - '0');
++        if (i > (std::numeric_limits<IntType>::max() - digit) / static_cast<IntType>(8)) {
++            return false;
++        }
++        i = i * static_cast<IntType>(8) + digit;
+@@ -621,0 +635,3 @@
++        if (i > (std::numeric_limits<IntType>::max() - ci) / static_cast<IntType>(16)) {
++            return false;
++        }
+@@ -663,6 +679 @@
+-        const bool success = atoi_dec_neg(p_begin + 1, p_end, i);
+-        if (success) {
+-            i *= static_cast<IntType>(-1);
+-        }
+-
+-        return success;
++        return atoi_dec_neg(p_begin + 1, p_end, i);
+--- a/include/fkYAML/detail/conversions/to_string.hpp
++++ b/include/fkYAML/detail/conversions/to_string.hpp
+@@ -13,0 +14 @@
++#include <locale>
+@@ -78,0 +80,2 @@
++    oss.imbue(std::locale::classic());
++    oss.precision(std::numeric_limits<FloatType>::max_digits10);
+--- a/include/fkYAML/detail/input/deserializer.hpp
++++ b/include/fkYAML/detail/input/deserializer.hpp
+@@ -381,0 +382,4 @@
++        if (m_flow_context_depth != 0) {
++            throw parse_error("Unclosed flow collection.", line, indent);
++        }
++
+--- a/include/fkYAML/detail/encodings/yaml_escaper.hpp
++++ b/include/fkYAML/detail/encodings/yaml_escaper.hpp
+@@ -29,0 +30,3 @@
++        case '0':
++            buff.push_back('\0');
++            break;
+@@ -116,0 +120,8 @@
++            case 0x00:
++                escaped += "\\0";
++                is_escaped = true;
++                break;
++            case 0x7F:
++                escaped += "\\u007F";
++                is_escaped = true;
++                break;
+@@ -251,0 +263,10 @@
++                    const auto next = static_cast<unsigned char>(*(begin + 1));
++                    if (*begin == static_cast<char>(0xC2u) && next >= 0x80 && next <= 0x9F) {
++                        static constexpr char hex[] = "0123456789ABCDEF";
++                        escaped += "\\u00";
++                        escaped += hex[next >> 4];
++                        escaped += hex[next & 0x0F];
++                        ++begin;
++                        is_escaped = true;
++                        break;
++                    }
+@@ -265,0 +287,7 @@
++                        if (*begin == static_cast<char>(0xEFu) && next == 0xBF &&
++                            (*(begin + 2) == static_cast<char>(0xBEu) || *(begin + 2) == static_cast<char>(0xBFu))) {
++                            escaped += *(begin + 2) == static_cast<char>(0xBEu) ? "\\uFFFE" : "\\uFFFF";
++                            begin += 2;
++                            is_escaped = true;
++                            break;
++                        }
+--- a/include/fkYAML/detail/output/serializer.hpp
++++ b/include/fkYAML/detail/output/serializer.hpp
+@@ -295,16 +295,4 @@
+-            // The next line is intentionally excluded from the LCOV coverage target since the next line is somehow
+-            // misrecognized as it has a binary branch. Possibly begin() or end() has some conditional branch(es)
+-            // internally. Confirmed with LCOV 1.14 on Ubuntu22.04.
+-            const node_type type_if_plain =
+-                scalar_scanner::scan(str_val.c_str(), str_val.c_str() + str_val.size()); // LCOV_EXCL_LINE
+-
+-            if (type_if_plain != node_type::STRING || !is_valid_plain_scalar(str_val)) {
+-                // Surround a string value with double quotes to keep semantic equality.
+-                // Without them, serialized values will become non-string. (e.g., "1" -> 1)
+-                str += '\"';
+-                str += str_val;
+-                str += '\"';
+-            }
+-            else {
+-                str += str_val;
+-            }
++            // Quote every string so document markers and scalar-looking values retain their type.
++            str += '\"';
++            str += str_val;
++            str += '\"';

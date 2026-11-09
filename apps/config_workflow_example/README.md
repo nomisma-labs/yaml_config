@@ -1,8 +1,5 @@
 # config_workflow_example
 
-> **Design for review — implementation pending.** APIs, commands and tests below
-> specify the intended behavior. See [the implementation plan](../../TODO.md) for status.
-
 This application demonstrates the full configuration workflow: build and generate
 configs, load and map them to C++, validate startup, run CTest checks, and install
 the application and generated configs. The linked consumer tests also demonstrate

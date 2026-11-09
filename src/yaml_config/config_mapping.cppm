@@ -39,7 +39,7 @@ export namespace nom::detail
         else
         {
             if (!document.is_integer())
-                throw ycfg::mapping_error("expected an integer");
+                throw ycfg::mapping_error("expected an integer; got " + fkyaml::node::serialize(document));
             if constexpr (std::same_as<Value, std::uint64_t>)
             {
                 if (!document.is_uint())

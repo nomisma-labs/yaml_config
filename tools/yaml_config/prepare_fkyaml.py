@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 Alexey Tkachenko
 # SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
-"""Prepare a private fkYAML include tree with the reviewed, hash-guarded numeric patch."""
+"""Prepare a private fkYAML include tree with the reviewed, hash-guarded compatibility patch."""
 
 import argparse
 import hashlib
@@ -11,6 +11,9 @@ import re
 
 # fkYAML v0.5.0, commit 5cc0747068b94708aa0986cacd200aa74be4f9e8.
 original_sha256 = {
+    "fkYAML/detail/output/serializer.hpp": "f9e5de3afe3938145bd4f73c755c633ba7207ff5d49dc31b69f83824ccbde335",
+    "fkYAML/detail/encodings/yaml_escaper.hpp": "5ff55683140129f5e95b34d795f1f3fc5d1afdf9408a885e61c0d610c9f57721",
+    "fkYAML/detail/input/deserializer.hpp": "35742b2c356b6d3c1741e46a184089117e862c2e6dae4f3189cabd87d461c0f0",
     "fkYAML/detail/conversions/scalar_conv.hpp": "6500fd9d49f21a976c561079b860ae295c87ca3345a076d46a5684223d1a9ecf",
     "fkYAML/detail/conversions/to_string.hpp": "2d06a4616aab51224606fe270d3f9ba967e060b7a1cbd2567575dafcc0fc7b2d",
 }
@@ -55,15 +58,15 @@ def prepare(source: Path, output: Path, patch: Path) -> None:
             raise ValueError("unexpected or duplicate fkYAML patch target")
         original = (source / "include" / name).read_bytes()
         if hashlib.sha256(original).hexdigest() != original_sha256[name]:
-            raise ValueError("fkYAML numeric patch requires exact v0.5.0 headers; review dependency changes")
+            raise ValueError("fkYAML compatibility patch requires exact v0.5.0 headers; review dependency changes")
         modified[Path(name)] = apply_patch(original.decode("utf-8"), section).encode("utf-8")
     if set(map(str, modified)) != set(original_sha256):
-        raise ValueError("incomplete fkYAML numeric patch")
+        raise ValueError("incomplete fkYAML compatibility patch")
     scalar = Path("fkYAML/detail/conversions/scalar_conv.hpp")
     marker = b"#define FK_YAML_CONVERSIONS_SCALAR_CONV_HPP\n"
     if modified[scalar].count(marker) != 1:
         raise ValueError("fkYAML patch marker location mismatch")
-    modified[scalar] = modified[scalar].replace(marker, marker + b"#define FK_YAML_NOMISMA_NUMERIC_PATCH 1\n")
+    modified[scalar] = modified[scalar].replace(marker, marker + b"#define FK_YAML_NOMISMA_COMPATIBILITY_PATCH 1\n")
     for header in (source / "include").rglob("*"):
         if not header.is_file():
             continue

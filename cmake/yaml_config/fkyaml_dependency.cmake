@@ -13,11 +13,14 @@ function(yaml_config_find_fkyaml)
     find_package(Python 3.11 REQUIRED COMPONENTS Interpreter)
     set(source "${PROJECT_SOURCE_DIR}/external/fkyaml")
     set(headers "${PROJECT_BINARY_DIR}/fkyaml/include")
-    set(patch "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/patches/fkyaml_numeric.patch")
+    set(patch "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/patches/fkyaml_compatibility.patch")
     set(script "${PROJECT_SOURCE_DIR}/tools/yaml_config/prepare_fkyaml.py")
     set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
         "${patch}" "${script}" "${source}/include/fkYAML/detail/conversions/scalar_conv.hpp"
-        "${source}/include/fkYAML/detail/conversions/to_string.hpp")
+        "${source}/include/fkYAML/detail/conversions/to_string.hpp"
+        "${source}/include/fkYAML/detail/input/deserializer.hpp"
+        "${source}/include/fkYAML/detail/encodings/yaml_escaper.hpp"
+        "${source}/include/fkYAML/detail/output/serializer.hpp")
     execute_process(COMMAND "${Python_EXECUTABLE}" "${script}"
         --source "${source}" --output "${headers}" --patch "${patch}"
         RESULT_VARIABLE status ERROR_VARIABLE diagnostic)

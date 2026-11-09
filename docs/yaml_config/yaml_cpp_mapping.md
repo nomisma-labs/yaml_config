@@ -1,8 +1,5 @@
 # YAML/C++ mapping
 
-> **Design for review — implementation pending.** APIs, commands and tests below
-> specify the intended behavior. See [the implementation plan](../../TODO.md) for status.
-
 Mapping connects YAML values to application-owned C++ config structures. The
 [loader](app_config_binding.md#loading-and-overrides) handles config resolution,
 reading, environment substitution, and runtime overrides. The mapping layer knows

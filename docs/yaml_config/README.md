@@ -1,8 +1,5 @@
 # YAML application config library
 
-> **Design for review — implementation pending.** APIs, commands and tests below
-> specify the intended behavior. See [the implementation plan](../../TODO.md) for status.
-
 Start with the [introduction](intro.md) for the basic config workflow, C++ application
 integration, and structured configs. The guides below cover each part in more detail.
 

@@ -1,8 +1,5 @@
 # ycfg - a structural configuration language
 
-> **Design for review — implementation pending.** APIs, commands and tests below
-> specify the intended behavior. See [the implementation plan](../../TODO.md) for status.
-
 ## Objective
 Nomisma **ycfg** language defines application configuration using YAML.
 The purpose of this language is to add structural features to YAML configs, i.e. ability to compose a single valid config from several fragments. For those who are familiar with OOP this reminds "inheritance" and "aggregation". So instead of redefining potentially complex multi-component config for different purposes we define "base" config with some default parameters and then re-use it by extending it in "derived" configs (inheritance) or by defining common parameters in "donor" config and including parts or whole "donor" into an "acceptor" config (aggregation). Those are main structural mechanisms. Apart from it there would be "adjustment" instructions that controls how these extension (aka inheritance) or aggregation (aka import or inclusion) happens.
@@ -447,7 +444,7 @@ mapping are also resolved before that mapping is assigned.
 
 [md_capture_ycfg.yaml](../../apps/md_capture/config/md_capture_ycfg.yaml) brings the
 mechanisms together for the [motivating example](#motivating-example).
-The planned [md_capture application](../../apps/md_capture/README.md) loads these
+The [md_capture application](../../apps/md_capture/README.md) loads these
 configs into C++, validates them, and illustrates the resulting capture settings.
 The application and this guide share the inputs in its `config/` directory;
 the expected generated outputs remain linked below.

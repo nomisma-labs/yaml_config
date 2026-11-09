@@ -8,3 +8,7 @@ add_subdirectory(ycfg)
 add_subdirectory(values)
 
 add_subdirectory(mapping)
+
+add_subdirectory(runtime)
+add_subdirectory(locator)
+add_subdirectory(loader)
