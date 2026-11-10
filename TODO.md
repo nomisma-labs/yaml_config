@@ -1,13 +1,13 @@
 # YAML framework status
 
-Documentation and implementation are complete for the first version, pending the
-user's implementation review. No release has been published. Documentation was
+Documentation and implementation are complete for the first version. The
+[changelog](CHANGELOG.md) records its release scope and history. Documentation was
 approved on **2026-11-09**; implementation followed in committed stages.
 
 ## Remaining work
 
-- Review the implementation and reconcile any requested corrections with the docs.
-- Release only after a separate release request.
+No outstanding work is scheduled for the first release. Track follow-up changes
+and corrections here as they are identified.
 
 ## Completed implementation
 
@@ -49,7 +49,15 @@ approved on **2026-11-09**; implementation followed in committed stages.
 - RFC 6901 token syntax for fragment imports and runtime overrides. Generator
   listings and private build records retain JSON metadata independently of YAML.
 
-## Validation — 2026-11-09
+## Release validation — 2026-11-11
+
+- Fresh `./bootstrap.sh complete`: all **22 CTest entries pass** (6 config,
+  9 integration and 7 unit); all 11 bootstrap checks pass with no skips.
+- The dependency report confirms the selected `base` and fkYAML release pins are
+  current. Python environment, SPDX headers and formatting checks pass.
+- The release-version check accepts `v0.1.0` against CMake `project()`.
+
+## Implementation validation — 2026-11-09
 
 - Fresh `./bootstrap.sh complete` with GCC 16: all **22 CTest entries pass**;
   10 bootstrap checks pass, none fail, dependency-update reporting is skipped.
