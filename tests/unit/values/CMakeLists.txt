@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2026 Alexey Tkachenko
-# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+# SPDX-License-Identifier: MIT
 
 nom_c2test(values IMPORT_STD SOURCES value_codec_test.cxx DEPS nom::yaml_config)
 find_package(Python 3.11 REQUIRED COMPONENTS Interpreter)

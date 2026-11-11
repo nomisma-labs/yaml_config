@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2026 Alexey Tkachenko
-# SPDX-License-Identifier: LicenseRef-Nomisma-Labs-Proprietary
+# SPDX-License-Identifier: MIT
 
 cmake_minimum_required(VERSION 4.4)
 get_filename_component(yaml_config_root "${CMAKE_CURRENT_LIST_DIR}/../../.." ABSOLUTE)
