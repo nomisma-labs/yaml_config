@@ -7,7 +7,7 @@ include(cmake/kit/std_modules.cmake)
 
 # The version lives only here; releases are tagged v<version> (docs/kit/build.md#versioning).
 project(yaml_config
-    VERSION 0.2.0
+    VERSION 0.2.1
     DESCRIPTION "Nomisma YAML application configuration"
     LANGUAGES CXX)
 
